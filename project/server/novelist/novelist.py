@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-import uvicorn
-
 from routes.novelist import novelist_router
+
+import uvicorn
 
 app = FastAPI()
 
