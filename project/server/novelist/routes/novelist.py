@@ -21,7 +21,7 @@ async def get_resposne(text: Annotated[str, Form()]) -> dict:
     
     reponse_wisemanClient = await wisemanClient.get_GPT_answer(text, document)
     
-    return {"text" : {text},
-            "response (librarianClient)" : {response_librarianClient},
-            "response (wisemanClient) - guide" : {reponse_wisemanClient[0]},
-            "response (wisemanClient) - content" : {reponse_wisemanClient[1]},}
+    return {"text_query" : {text},
+            "response_librarianClient_document" : {response_librarianClient},
+            "response_wisemanClient_guide" : {reponse_wisemanClient[0]},
+            "response_wisemanClient_content" : {reponse_wisemanClient[1]},}
