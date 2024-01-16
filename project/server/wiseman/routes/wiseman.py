@@ -7,12 +7,12 @@ from infra.client import WisemanClient
 
 wiseman_router = APIRouter(tags=["Wiseman"])
 
-wiseman_client = WisemanClient("project/server/wiseman/config.yaml")
+wiseman_client = WisemanClient("./config.yaml")
 
 
 @wiseman_router.post("/ask")
 async def get_LLM_answer(text: Annotated[str, Form()], document: Annotated[str, Form()]) -> dict:
-    gpt_query = f'''[{document}] [] 안의 내용을 3줄로 요약해줘!
+    gpt_query = f'''[{document}] [] 안의 내용을 요약해서 설명해줘
                 '''
     # content - gpt api의 결과물을 의미
     content = await wiseman_client.get_GPT_answer(gpt_query)
