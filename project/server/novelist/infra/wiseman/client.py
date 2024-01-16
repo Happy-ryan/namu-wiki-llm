@@ -9,7 +9,7 @@ class WisemanClient:
     
         self.API_URL = self.conf['wisemane_server_api']
     
-    async def get_GPT_answer(self, text: str, document: str) -> tuple:
+    async def get_resposne(self, text: str, document: str) -> tuple:
         async with httpx.AsyncClient() as client:
             print("Wiseman Client 작동 확인")
             response = await client.post(

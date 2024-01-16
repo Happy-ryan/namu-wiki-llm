@@ -1,7 +1,7 @@
 import httpx, yaml
 from fastapi import HTTPException
 
-class WisemanClient:
+class LLMClient:
     
     def __init__(self, config_path: str):
         
@@ -13,7 +13,7 @@ class WisemanClient:
         self.OPENAI_API_MODEL = self.conf["openai_api"]["model"]
     
 
-    async def get_GPT_answer(self, text: str):
+    async def get_resposne(self, text: str):
         async with httpx.AsyncClient() as client:
             print("GPT Client ")
             response = await client.post(
@@ -29,7 +29,7 @@ class WisemanClient:
             
             if response.status_code != 200:
                 raise HTTPException(status_code=response.status_code,
-                                    detail="[ERROR] WisemanClient!")
+                                    detail="[ERROR] LLMClient!")
                 
             GPT_answer = response.json()['choices'][0]['message']['content']
             

@@ -3,11 +3,11 @@ from pydantic import BaseModel
 
 from typing import Annotated
 
-from infra.client import WisemanClient
+from infra.client import LLMClient
 
 wiseman_router = APIRouter(tags=["Wiseman"])
 
-wiseman_client = WisemanClient("./config.yaml")
+llm_client = LLMClient("./config.yaml")
 
 
 @wiseman_router.post("/ask")
@@ -20,7 +20,7 @@ async def get_LLM_answer(text: Annotated[str, Form()], document: Annotated[str, 
                 - [{document}]
                 '''
     # content - gpt api의 결과물을 의미
-    content = await wiseman_client.get_GPT_answer(gpt_query)
+    content = await llm_client.get_resposne(gpt_query)
     
     return {
         "guide" : f'|{text}| 에 대한 답변은 GPT-4 기반 AI로 작성되었습니다.',
