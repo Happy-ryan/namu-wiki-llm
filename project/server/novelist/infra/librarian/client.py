@@ -1,9 +1,13 @@
-import httpx
+import httpx, yaml
 from fastapi import HTTPException, status
 
 class LibrarianClient:
     
-    API_URL = "http://localhost:8001/librarian"
+    def __init__(self, config_path: str):
+        with open(config_path) as f:
+            self.conf = yaml.safe_load(f)
+    
+        self.API_URL = self.conf['librarian_server_api']
 
     async def search_document(self, text: str):
         async with httpx.AsyncClient() as client:

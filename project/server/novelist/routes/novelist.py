@@ -7,8 +7,8 @@ from typing import Annotated
 from infra.librarian.client import LibrarianClient
 from infra.wiseman.client import WisemanClient
 
-librarianClient = LibrarianClient()
-wisemanClient = WisemanClient()
+librarianClient = LibrarianClient("./config.yaml")
+wisemanClient = WisemanClient("./config.yaml")
 
 novelist_router = APIRouter(tags=["Novelist"])
 

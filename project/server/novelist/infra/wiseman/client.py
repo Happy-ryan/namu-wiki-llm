@@ -1,9 +1,13 @@
-import httpx
+import httpx, yaml
 from fastapi import HTTPException, status
 
 class WisemanClient:
     
-    API_URL = "http://localhost:8002/wiseman"
+    def __init__(self, config_path: str):
+        with open(config_path) as f:
+            self.conf = yaml.safe_load(f)
+    
+        self.API_URL = self.conf['wisemane_server_api']
     
     async def get_GPT_answer(self, text: str, document: str) -> tuple:
         async with httpx.AsyncClient() as client:
