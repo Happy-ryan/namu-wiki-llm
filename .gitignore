@@ -1,3 +1,5 @@
 .python-version
 __pycache__
 config.yaml
+namu_wiki_dump
+.vscode
