@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Form
-from pydantic import BaseModel
 
-from typing import Annotated
-
+from typing import Annotated, Union
 
 from infra.librarian.client import LibrarianClient
 from infra.wiseman.client import WisemanClient
@@ -12,16 +10,18 @@ wiseman_client = WisemanClient("./config.yaml")
 
 novelist_router = APIRouter(tags=["Novelist"])
 
-@novelist_router.post("/text")
-async def get_resposne(text: Annotated[str, Form()]) -> dict:
-    
-    response_librarian_client = await librarian_client.search_document(text)
+@novelist_router.post("/query")
+async def get_resposne(query: Annotated[str, Form()]) -> Union[dict, None]:
+    response_librarian_client = await librarian_client.search_document_content(query)
     
     document = response_librarian_client
+    # 해당 검색이 없는 경우.
+    if document is None:
+        return None
     
-    reponse_wiseman_client = await wiseman_client.get_resposne(text, document)
+    reponse_wiseman_client = await wiseman_client.get_resposne(query, document)
     
-    return {"text_query" : {text},
+    return {"text_query" : {query},
             "response_librarianClient_document" : {response_librarian_client},
             "response_wisemanClient_guide" : {reponse_wiseman_client[0]},
             "response_wisemanClient_content" : {reponse_wiseman_client[1]},}

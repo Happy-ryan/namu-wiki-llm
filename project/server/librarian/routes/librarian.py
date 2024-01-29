@@ -44,11 +44,11 @@ async def get_documents(query: str) -> dict:
     
     if documents is None:
         return {
-            f"{query}": "해당 내용을 가진 문서를 찾지 못했어요. 다시 검색해주세요."
+            "documents" : None
         }
 
     return {
-            "찾은 문서 중 가장 score가 높은 문서" : documents[0]
+            "documents" : documents[0]
             }
     
 @librarian_router.get("/search-title/{query}")
@@ -57,9 +57,9 @@ async def get_documents(query: str) -> dict:
     
     if document is None:
         return {
-            f"title이 {query}인 해당 문서": "없는 문서입니다. 다시 입력해주세요."
+            "documents" : None
         }
-        
+
     return {
-        f"title이 {query}인 해당 문서": document 
-    }
+            "documents" : document
+            }
