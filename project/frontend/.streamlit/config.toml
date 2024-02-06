@@ -1,0 +1,31 @@
+[general]
+title = "NAMU-WIKI-LLM"
+
+[theme]
+base = "light"
+primaryColor = "#f63366"
+backgroundColor = "#f0f2f6"
+secondaryBackgroundColor = "#ebecf1"
+textColor = "#000000"  # 진한 검정색으로 변경
+font = "sans serif"
+
+[sidebar]
+width = 300
+
+[primaryConfig.header]
+backgroundColor = "#f63366"
+
+[primaryConfig.input]
+backgroundColor = "#ffffff"
+textColor = "#000000"  # 진한 검정색으로 변경
+
+[primaryConfig.button]
+backgroundColor = "#f63366"
+hoverBackgroundColor = "#e6004c"
+textColor = "#ffffff"
+
+[primaryConfig.chat]
+backgroundColor = "#f0f2f6"
+bubbleTextColor = "#000000"  # 진한 검정색으로 변경
+bubbleBackgroundColor = "#ffffff"
+badgeBackgroundColor = "#f63366"
